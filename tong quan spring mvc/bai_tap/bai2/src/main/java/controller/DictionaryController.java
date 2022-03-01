@@ -18,7 +18,7 @@ public class DictionaryController {
 
     @GetMapping("/")
     public String begin(){
-        return "dictionary";
+        return "/dictionary";
     }
 
     @GetMapping("/dictionary")
@@ -38,7 +38,7 @@ public class DictionaryController {
             }
         }
         model.addAttribute("vietnamese",vietnamese);
-        return "dictionary";
+        return "/dictionary";
     }
 
 }
