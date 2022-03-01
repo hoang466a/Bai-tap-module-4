@@ -13,8 +13,8 @@ public class ConvertController {
     }
 
     @GetMapping("/convert")
-    public String convert(@RequestParam String usd, String rate, Model model){
-        Double valueOfConvert=Double.valueOf(usd)*Double.valueOf(rate);
+    public String convert(@RequestParam Double usd, Double rate, Model model){
+        Double valueOfConvert=usd*rate;
         model.addAttribute("valueOfConvert",valueOfConvert);
         return "convert";
     }
