@@ -1,19 +1,16 @@
 package com.codegym.model;
 
-import java.security.Signature;
-import java.util.HashMap;
-
 public class Mail {
     private String language;
     private Integer pageSize;
-    private Boolean spamfilter;
-    private String Signature;
+    private String spamFilter;
+    private String signature;
 
-    public Mail(String language, Integer pageSize, Boolean spamfilter, String signature) {
+    public Mail(String language, Integer pageSize, String spamfilter, String signature) {
         this.language = language;
         this.pageSize = pageSize;
-        this.spamfilter = spamfilter;
-        Signature = signature;
+        this.spamFilter = spamfilter;
+        this.signature = signature;
     }
 
     public Mail() {
@@ -35,19 +32,19 @@ public class Mail {
         this.pageSize = pageSize;
     }
 
-    public Boolean getSpamfilter() {
-        return spamfilter;
+    public String getSpamFilter() {
+        return spamFilter;
     }
 
-    public void setSpamfilter(Boolean spamfilter) {
-        this.spamfilter = spamfilter;
+    public void setSpamFilter(String spamFilter) {
+        this.spamFilter = spamFilter;
     }
 
     public String getSignature() {
-        return Signature;
+        return signature;
     }
 
     public void setSignature(String signature) {
-        Signature = signature;
+        this.signature = signature;
     }
 }
