@@ -15,9 +15,8 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository iCustomerRepository;
 
     @Override
-    public Customer findById(int id) {
-
-        return iCustomerRepository.findbyId(id);
+    public Customer findById(Long id) {
+        return iCustomerRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -26,8 +25,8 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Customer> searchByName(String name) {
-        return iCustomerRepository.findByNameContatining(name);
+    public List<Customer> searchByName(String firstname) {
+        return iCustomerRepository.findAllByFirstnameContaining(firstname);
     }
 
     @Override

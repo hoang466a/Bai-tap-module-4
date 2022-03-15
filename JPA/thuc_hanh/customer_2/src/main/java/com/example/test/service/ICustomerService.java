@@ -5,7 +5,7 @@ import com.example.test.model.Customer;
 import java.util.List;
 
 public interface ICustomerService {
-    Customer findById(int id);
+    Customer findById(Long id);
     List<Customer> findAll();
     List<Customer>searchByName(String name);
     Customer findOne(Long id);

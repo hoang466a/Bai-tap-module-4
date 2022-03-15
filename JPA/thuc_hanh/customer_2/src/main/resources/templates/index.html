@@ -6,9 +6,9 @@
     <title>Title</title>
 </head>
 <body>
-<h3>Blog list</h3>
+<h3>Customer list</h3>
 <p>
-    <a th:href="@{/blog/create}">
+    <a th:href="@{/customer/create}">
         Add new customer
     </a>
 </p>
@@ -22,20 +22,15 @@
     <tr>
         <th>Id</th>
         <th>First Name</th>
-        <th>Lasr Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Infomation</th>
+        <th>Last Name</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr th:each="row,rowStat : ${blogs}">
-        <td th:text="${row.getName()}"></td>
-        <td th:text="${row.getNote()}"></td>
-        <td th:text="${row.getDescription()}"></td>
-        <td><a th:href="@{/blog/{id}/edit(id=${row.getId()})}">edit</a></td>
-        <td><a th:href="@{/blog/{id}/delete(id=${row.getId()})}">delete</a></td>
-        <td><a th:href="@{/blog/{id}/view(id=${row.getId()})}">view</a></td>
+    <tr th:each="row,rowStat : ${customers}">
+        <td th:text="${row.getId()}"></td>
+        <td th:text="${row.getFirstname()}"></td>
+        <td th:text="${row.getLastname()}"></td>
     </tr>
     </tbody>
 </table>
