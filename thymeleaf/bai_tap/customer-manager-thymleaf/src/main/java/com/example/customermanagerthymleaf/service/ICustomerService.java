@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICustomerService {
-    Optional<Customer> findById(int id);
+    Customer findById(int id);
     List<Customer> findAll();
 
     Customer findOne (Integer id);

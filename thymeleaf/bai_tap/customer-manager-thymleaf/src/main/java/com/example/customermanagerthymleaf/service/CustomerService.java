@@ -18,8 +18,8 @@ public class CustomerService implements ICustomerService {
 
 
     @Override
-    public Optional<Customer> findById(int id) {
-        return iCustomerRepository.findById(id);
+    public Customer findById(int id) {
+        return iCustomerRepository.findById(id).orElse(null);
     }
 
     @Override

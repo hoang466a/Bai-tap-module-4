@@ -28,14 +28,15 @@ public class CustomerController {
 
     @GetMapping("/create")
     public String create(Model model){
+        model.addAttribute("customer",new Customer());
         return "/create";
     }
 
     @PostMapping("/save")
-    public String save(Customer customer, RedirectAttributes redirectAttributes){
+    public String save(Customer customer,RedirectAttributes redirectAttributes){
         iCustomerService.save(customer);
-        redirectAttributes.addFlashAttribute("success","Add new Customer success");
-        return "/customer";
+        redirectAttributes.addFlashAttribute("success","Add new success!");
+        return "redirect:/customer";
     }
 
     @GetMapping("/edit/{id}")
@@ -46,9 +47,31 @@ public class CustomerController {
 
     @PostMapping("/update")
     public String update(Customer customer,Model model){
-        
+        iCustomerService.save(customer);
+        List<Customer>customers=iCustomerService.findAll();
+        model.addAttribute("customers",customers);
+        return "redirect:/customer";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, Model model){
+        Customer customer=iCustomerService.findById(id);
+        model.addAttribute("customer",customer);
+        return "/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete_two(RedirectAttributes redirectAttributes,Customer customer){
+        iCustomerService.delete(customer.getId());
+        redirectAttributes.addFlashAttribute("message","remove customer successfull!");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable int id, Model model){
+        model.addAttribute("customer",iCustomerService.findById(id));
+        return "/view";
+    }
 
 
 
