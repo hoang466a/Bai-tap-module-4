@@ -78,7 +78,6 @@ public class ProvinceController {
             ModelAndView modelAndView = new ModelAndView("/province/delete");
             modelAndView.addObject("province", province.get());
             return modelAndView;
-
         } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
