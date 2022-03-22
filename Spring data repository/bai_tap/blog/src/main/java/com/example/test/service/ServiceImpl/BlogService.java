@@ -1,9 +1,13 @@
-package com.example.test.service;
+package com.example.test.service.ServiceImpl;
 
 import com.example.test.model.Blog;
 import com.example.test.repository.IBlogRepository;
+import com.example.test.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -18,15 +22,17 @@ public class BlogService implements IBlogService {
         return blogRepository.findById(id).orElse(null);
     }
 
+
     @Override
-    public List<Blog> findAll() {
-        return blogRepository.findAll();
+    public Page<Blog> searchByName(String name, Pageable pageable) {
+        return blogRepository.findAllByName(name,pageable);
     }
 
     @Override
-    public List<Blog> searchByName(String name) {
-        return blogRepository.findAllByName(name);
+    public Page<Blog> findAll(Pageable pageable) {
+        return blogRepository.findAll(pageable);
     }
+
 
     @Override
     public Blog save(Blog blog) {
@@ -36,13 +42,6 @@ public class BlogService implements IBlogService {
     @Override
     public Blog findOne(Integer id) {
         return blogRepository.findById(id).orElse(null);
-    }
-
-
-
-    @Override
-    public boolean exists(int id) {
-        return false;
     }
 
     @Override
