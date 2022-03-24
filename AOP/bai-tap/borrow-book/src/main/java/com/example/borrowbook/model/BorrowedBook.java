@@ -15,4 +15,13 @@ public class BorrowedBook {
     @JoinColumn(name="customer_id",referencedColumnName = "id")
     private Customer customer;
 
+    public BorrowedBook(){
+    }
+
+    public BorrowedBook(Long id, String borrowedNumber, Book book, Customer customer) {
+        this.id = id;
+        this.borrowedNumber = borrowedNumber;
+        this.book = book;
+        this.customer = customer;
+    }
 }
