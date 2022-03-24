@@ -36,14 +36,14 @@ public class Employee {
     @JoinColumn(name="division_id",referencedColumnName = "divisionId")
     private Division division;
 
-    @JsonManagedReference
+   /* @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="username",referencedColumnName = "userName")
     private User user;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "employee")
-    private Set<Contract> contract;
+    private Set<Contract> contract;*/
 
     public Employee() {
     }
@@ -136,19 +136,5 @@ public class Employee {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<Contract> getContract() {
-        return contract;
-    }
-
-    public void setContract(Set<Contract> contract) {
-        this.contract = contract;
-    }
 }

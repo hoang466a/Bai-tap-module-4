@@ -1,9 +1,9 @@
 package com.example.casestudy.service.Employee;
 
-import com.example.casestudy.model.Employee_model.EducationDegree;
-import com.example.casestudy.model.Employee_model.User;
-import org.springframework.data.domain.Page;
+import com.example.casestudy.model.User;
+
+import java.util.List;
 
 public interface IUserService {
-    Page<User> findAll();
+    List<User> findAll();
 }

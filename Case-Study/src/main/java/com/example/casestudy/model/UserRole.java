@@ -1,4 +1,4 @@
-package com.example.casestudy.model.Employee_model;
+package com.example.casestudy.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

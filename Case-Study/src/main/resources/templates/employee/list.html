@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/employee/create}">
+        Add new employee
+    </a>
+</p>
+
+<table id = "employees">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Id Card</th>
+        <th>Salary</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Position</th>
+        <th>Education Degree</th>
+        <th>Division</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${employeeList}">
+        <td th:text="${row.getEmployeeName()}"></td>
+        <td th:text="${row.getEmployeeBirthday()}"></td>
+        <td th:text="${row.getEmployeeIdCard()}"></td>
+        <td th:text="${row.getEmployeeSalary()}"></td>
+        <td th:text="${row.getEmployeePhone()}"></td>
+        <td th:text="${row.getEmployeeEmail()}"></td>
+        <td th:text="${row.getEmployeeAddress()}"></td>
+        <td th:text="${row.position.positionName}"></td>
+        <td th:text="${row.educationDegree.educationDegreeName}"></td>
+        <td th:text="${row.division.divisionName}"></td>
+        <td><a th:href="@{/customer/__${row.employeeId}__}">edit</a></td>
+        <td><a th:href="@{/customer/__${row.employeeId}__}">delete</a></td>
+        <td><a th:href="@{/customer/__${row.employeeId}__}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

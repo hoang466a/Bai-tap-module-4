@@ -1,5 +1,6 @@
-package com.example.casestudy.model.Employee_model;
+package com.example.casestudy.model;
 
+import com.example.casestudy.model.Employee_model.Employee;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.Entity;
@@ -16,9 +17,7 @@ public class User {
     public User() {
     }
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
+
 
 
     public String getUserName() {
@@ -37,11 +36,5 @@ public class User {
         this.passWord = passWord;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }
