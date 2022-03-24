@@ -1,11 +1,9 @@
-package com.example.casestudy.model;
+package com.example.casestudy.model.Employee_model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -22,15 +20,30 @@ public class Employee {
     private String employee_phone;
     private String employee_email;
     private String employee_address;
-    private Integer position_id;
-    private Integer education_degree_id;
-    private Integer division_id;
-    private String username;
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name="position_id",referencedColumnName = "position_id")
+    private Position position;
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name="education_degree_id",referencedColumnName = "education_degree_id")
+    private Education_degree education_degree;
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name="division_id",referencedColumnName = "division_id")
+    private Division division;
+
+    @JsonManagedReference
+    @OneToOne
+    @JoinColumn(name="username",referencedColumnName = "username")
+    private User user;
 
     public Employee() {
     }
 
-    public Employee(Integer employee_id, String employee_name, LocalDate employee_birthday, String employee_id_card, Double employee_salary, String employee_phone, String employee_email, String employee_address, Integer position_id, Integer education_degree_id, Integer division_id, String username) {
+    public Employee(Integer employee_id, String employee_name, LocalDate employee_birthday, String employee_id_card, Double employee_salary, String employee_phone, String employee_email, String employee_address, Position position, Education_degree education_degree, Division division, User user) {
         this.employee_id = employee_id;
         this.employee_name = employee_name;
         this.employee_birthday = employee_birthday;
@@ -39,10 +52,10 @@ public class Employee {
         this.employee_phone = employee_phone;
         this.employee_email = employee_email;
         this.employee_address = employee_address;
-        this.position_id = position_id;
-        this.education_degree_id = education_degree_id;
-        this.division_id = division_id;
-        this.username = username;
+        this.position = position;
+        this.education_degree = education_degree;
+        this.division = division;
+        this.user = user;
     }
 
     public Integer getEmployee_id() {
@@ -109,35 +122,35 @@ public class Employee {
         this.employee_address = employee_address;
     }
 
-    public Integer getPosition_id() {
-        return position_id;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPosition_id(Integer position_id) {
-        this.position_id = position_id;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public Integer getEducation_degree_id() {
-        return education_degree_id;
+    public Education_degree getEducation_degree() {
+        return education_degree;
     }
 
-    public void setEducation_degree_id(Integer education_degree_id) {
-        this.education_degree_id = education_degree_id;
+    public void setEducation_degree(Education_degree education_degree) {
+        this.education_degree = education_degree;
     }
 
-    public Integer getDivision_id() {
-        return division_id;
+    public Division getDivision() {
+        return division;
     }
 
-    public void setDivision_id(Integer division_id) {
-        this.division_id = division_id;
+    public void setDivision(Division division) {
+        this.division = division;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

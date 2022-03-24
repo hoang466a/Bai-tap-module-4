@@ -1,4 +1,4 @@
-package com.example.casestudy.model;
+package com.example.casestudy.model.Employee_model;
 
 import org.springframework.data.annotation.Id;
 
