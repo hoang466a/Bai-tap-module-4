@@ -1,19 +1,20 @@
-package com.example.casestudy.model;
+package com.example.casestudy.model.Customer_model;
 
-import org.springframework.data.annotation.Id;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
+
 @Entity
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customer_id;
-    private Integer customer_type_int;
+
     private String customer_name;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate customer_birthday;
@@ -26,17 +27,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer customer_id, Integer customer_type_int, String customer_name, LocalDate customer_birthday, Boolean customer_gender, String customer_id_card, String customer_phone, String customer_email, String customer_address) {
-        this.customer_id = customer_id;
-        this.customer_type_int = customer_type_int;
-        this.customer_name = customer_name;
-        this.customer_birthday = customer_birthday;
-        this.customer_gender = customer_gender;
-        this.customer_id_card = customer_id_card;
-        this.customer_phone = customer_phone;
-        this.customer_email = customer_email;
-        this.customer_address = customer_address;
-    }
+
 
     public Integer getCustomer_id() {
         return customer_id;
@@ -44,14 +35,6 @@ public class Customer {
 
     public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
-    }
-
-    public Integer getCustomer_type_int() {
-        return customer_type_int;
-    }
-
-    public void setCustomer_type_int(Integer customer_type_int) {
-        this.customer_type_int = customer_type_int;
     }
 
     public String getCustomer_name() {

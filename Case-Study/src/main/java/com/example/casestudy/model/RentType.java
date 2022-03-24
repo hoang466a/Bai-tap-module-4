@@ -5,16 +5,16 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.Entity;
 
 @Entity
-public class Rent_type {
+public class RentType {
     @Id
     private Integer rent_type;
     private String rent_type_name;
     private Double rent_type_cost;
 
-    public Rent_type() {
+    public RentType() {
     }
 
-    public Rent_type(Integer rent_type, String rent_type_name, Double rent_type_cost) {
+    public RentType(Integer rent_type, String rent_type_name, Double rent_type_cost) {
         this.rent_type = rent_type;
         this.rent_type_name = rent_type_name;
         this.rent_type_cost = rent_type_cost;

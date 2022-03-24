@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Service_type {
+public class ServiceType {
     @Id
     private Integer service_type_id;
     private String service_type_name;

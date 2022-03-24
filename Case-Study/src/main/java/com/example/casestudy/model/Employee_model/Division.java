@@ -1,38 +1,45 @@
-package com.example.casestudy.model.Employee_model.;
+package com.example.casestudy.model.Employee_model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Division {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer division_id;
-    private String division_name;
+    private Integer divisionId;
+    private String divisionName;
 
     public Division() {
     }
 
-    public Division(Integer division_id, String division_name) {
-        this.division_id = division_id;
-        this.division_name = division_name;
+    @JsonBackReference
+    @OneToMany(mappedBy = "division")
+    private Set<Employee> employee;
+
+
+    public Integer getDivisionId() {
+        return divisionId;
     }
 
-    public Integer getDivision_id() {
-        return division_id;
+    public void setDivisionId(Integer divisionId) {
+        this.divisionId = divisionId;
     }
 
-    public void setDivision_id(Integer division_id) {
-        this.division_id = division_id;
+    public String getDivisionName() {
+        return divisionName;
     }
 
-    public String getDivision_name() {
-        return division_name;
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
     }
 
-    public void setDivision_name(String division_name) {
-        this.division_name = division_name;
+    public Set<Employee> getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Set<Employee> employee) {
+        this.employee = employee;
     }
 }

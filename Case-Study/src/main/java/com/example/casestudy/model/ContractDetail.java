@@ -4,17 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Contract_detail {
+public class ContractDetail {
     @Id
     private Integer contract_detail_id;
     private Integer contract_id;
     private Integer attach_service_id;
     private Integer quantity;
 
-    public Contract_detail() {
+    public ContractDetail() {
     }
 
-    public Contract_detail(Integer contract_detail_id, Integer contract_id, Integer attach_service_id, Integer quantity) {
+    public ContractDetail(Integer contract_detail_id, Integer contract_id, Integer attach_service_id, Integer quantity) {
         this.contract_detail_id = contract_detail_id;
         this.contract_id = contract_id;
         this.attach_service_id = attach_service_id;

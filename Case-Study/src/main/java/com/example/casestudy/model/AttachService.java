@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Attach_service {
+public class AttachService {
     @Id
     private Integer attach_service_id;
     private String attach_service_name;
@@ -13,10 +13,10 @@ public class Attach_service {
     private Integer attach_service_unit;
     private String attach_service_status;
 
-    public Attach_service() {
+    public AttachService() {
     }
 
-    public Attach_service(Integer attach_service_id, String attach_service_name, Double attach_service_cost, Integer attach_service_unit, String attach_service_status) {
+    public AttachService(Integer attach_service_id, String attach_service_name, Double attach_service_cost, Integer attach_service_unit, String attach_service_status) {
         this.attach_service_id = attach_service_id;
         this.attach_service_name = attach_service_name;
         this.attach_service_cost = attach_service_cost;

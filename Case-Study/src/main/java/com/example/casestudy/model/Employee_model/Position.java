@@ -1,38 +1,44 @@
 package com.example.casestudy.model.Employee_model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Position {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer position_id;
-    private String position_name;
+    private Integer positionId;
+    private String positionName;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "position")
+    private Set<Employee> employee;
 
     public Position() {
     }
 
-    public Position(Integer position_id, String position_name) {
-        this.position_id = position_id;
-        this.position_name = position_name;
+    public Set<Employee> getEmployee() {
+        return employee;
     }
 
-    public Integer getPosition_id() {
-        return position_id;
+    public void setEmployee(Set<Employee> employee) {
+        this.employee = employee;
     }
 
-    public void setPosition_id(Integer position_id) {
-        this.position_id = position_id;
+    public Integer getPositionId() {
+        return positionId;
     }
 
-    public String getPosition_name() {
-        return position_name;
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
     }
 
-    public void setPosition_name(String position_name) {
-        this.position_name = position_name;
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 }

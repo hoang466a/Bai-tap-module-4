@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Contract {
@@ -27,16 +26,6 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(Integer contract_id, LocalDate contract_start_date, LocalDate contract_end_date, Double contract_deposit, Double contract_total_money, Integer employee_id, Integer customer_id, Integer service_id) {
-        this.contract_id = contract_id;
-        this.contract_start_date = contract_start_date;
-        this.contract_end_date = contract_end_date;
-        this.contract_deposit = contract_deposit;
-        this.contract_total_money = contract_total_money;
-        this.employee_id = employee_id;
-        this.customer_id = customer_id;
-        this.service_id = service_id;
-    }
 
     public Integer getContract_id() {
         return contract_id;

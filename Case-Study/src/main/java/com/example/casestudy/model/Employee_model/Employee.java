@@ -1,125 +1,115 @@
 package com.example.casestudy.model.Employee_model;
 
+import com.example.casestudy.model.Contract;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer employee_id;
-    private String employee_name;
+    private Integer employeeId;
+    private String employeeName;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private LocalDate employee_birthday;
-    private String employee_id_card;
-    private Double employee_salary;
-    private String employee_phone;
-    private String employee_email;
-    private String employee_address;
+    private LocalDate employeeBirthday;
+    private String employeeIdCard;
+    private Double employeeSalary;
+    private String employeePhone;
+    private String employeeEmail;
+    private String employeeAddress;
     @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="position_id",referencedColumnName = "position_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="position_id",referencedColumnName = "positionId")
     private Position position;
 
     @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="education_degree_id",referencedColumnName = "education_degree_id")
-    private Education_degree education_degree;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="education_degree_id",referencedColumnName = "educationDegreeId")
+    private EducationDegree educationDegree;
 
     @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="division_id",referencedColumnName = "division_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="division_id",referencedColumnName = "divisionId")
     private Division division;
 
     @JsonManagedReference
-    @OneToOne
-    @JoinColumn(name="username",referencedColumnName = "username")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="username",referencedColumnName = "userName")
     private User user;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "employee")
+    private Set<Contract> contract;
 
     public Employee() {
     }
 
-    public Employee(Integer employee_id, String employee_name, LocalDate employee_birthday, String employee_id_card, Double employee_salary, String employee_phone, String employee_email, String employee_address, Position position, Education_degree education_degree, Division division, User user) {
-        this.employee_id = employee_id;
-        this.employee_name = employee_name;
-        this.employee_birthday = employee_birthday;
-        this.employee_id_card = employee_id_card;
-        this.employee_salary = employee_salary;
-        this.employee_phone = employee_phone;
-        this.employee_email = employee_email;
-        this.employee_address = employee_address;
-        this.position = position;
-        this.education_degree = education_degree;
-        this.division = division;
-        this.user = user;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public Integer getEmployee_id() {
-        return employee_id;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setEmployee_id(Integer employee_id) {
-        this.employee_id = employee_id;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public String getEmployee_name() {
-        return employee_name;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public void setEmployee_name(String employee_name) {
-        this.employee_name = employee_name;
+    public LocalDate getEmployeeBirthday() {
+        return employeeBirthday;
     }
 
-    public LocalDate getEmployee_birthday() {
-        return employee_birthday;
+    public void setEmployeeBirthday(LocalDate employeeBirthday) {
+        this.employeeBirthday = employeeBirthday;
     }
 
-    public void setEmployee_birthday(LocalDate employee_birthday) {
-        this.employee_birthday = employee_birthday;
+    public String getEmployeeIdCard() {
+        return employeeIdCard;
     }
 
-    public String getEmployee_id_card() {
-        return employee_id_card;
+    public void setEmployeeIdCard(String employeeIdCard) {
+        this.employeeIdCard = employeeIdCard;
     }
 
-    public void setEmployee_id_card(String employee_id_card) {
-        this.employee_id_card = employee_id_card;
+    public Double getEmployeeSalary() {
+        return employeeSalary;
     }
 
-    public Double getEmployee_salary() {
-        return employee_salary;
+    public void setEmployeeSalary(Double employeeSalary) {
+        this.employeeSalary = employeeSalary;
     }
 
-    public void setEmployee_salary(Double employee_salary) {
-        this.employee_salary = employee_salary;
+    public String getEmployeePhone() {
+        return employeePhone;
     }
 
-    public String getEmployee_phone() {
-        return employee_phone;
+    public void setEmployeePhone(String employeePhone) {
+        this.employeePhone = employeePhone;
     }
 
-    public void setEmployee_phone(String employee_phone) {
-        this.employee_phone = employee_phone;
+    public String getEmployeeEmail() {
+        return employeeEmail;
     }
 
-    public String getEmployee_email() {
-        return employee_email;
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
     }
 
-    public void setEmployee_email(String employee_email) {
-        this.employee_email = employee_email;
+    public String getEmployeeAddress() {
+        return employeeAddress;
     }
 
-    public String getEmployee_address() {
-        return employee_address;
-    }
-
-    public void setEmployee_address(String employee_address) {
-        this.employee_address = employee_address;
+    public void setEmployeeAddress(String employeeAddress) {
+        this.employeeAddress = employeeAddress;
     }
 
     public Position getPosition() {
@@ -130,12 +120,12 @@ public class Employee {
         this.position = position;
     }
 
-    public Education_degree getEducation_degree() {
-        return education_degree;
+    public EducationDegree getEducationDegree() {
+        return educationDegree;
     }
 
-    public void setEducation_degree(Education_degree education_degree) {
-        this.education_degree = education_degree;
+    public void setEducationDegree(EducationDegree education_degree) {
+        this.educationDegree = education_degree;
     }
 
     public Division getDivision() {
@@ -152,5 +142,13 @@ public class Employee {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 }
