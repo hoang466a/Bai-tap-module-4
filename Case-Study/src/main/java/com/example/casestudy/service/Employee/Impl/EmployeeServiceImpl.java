@@ -21,12 +21,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public Employee findById(Integer id) {
-        return null;
+        return iEmployeeRepository.findById(id).orElse(null);
     }
 
     @Override
     public void save(Employee employee) {
-
+        iEmployeeRepository.save(employee);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public void deleteById(Integer id) {
-
+        iEmployeeRepository.deleteById(id);
     }
 }

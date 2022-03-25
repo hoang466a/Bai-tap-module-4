@@ -13,7 +13,7 @@ public class EducationDegree {
     private String educationDegreeName;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "educationDegree")
+    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
     private Set<Employee> employee;
 
     public EducationDegree() {

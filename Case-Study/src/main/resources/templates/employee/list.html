@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head">
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <body>
-<h3>Customers</h3>
+<h3>Employee List</h3>
 <p>
     <a th:href="@{/employee/create}">
         Add new employee
@@ -40,12 +41,70 @@
         <td th:text="${row.position.positionName}"></td>
         <td th:text="${row.educationDegree.educationDegreeName}"></td>
         <td th:text="${row.division.divisionName}"></td>
-        <td><a th:href="@{/customer/__${row.employeeId}__}">edit</a></td>
-        <td><a th:href="@{/customer/__${row.employeeId}__}">delete</a></td>
-        <td><a th:href="@{/customer/__${row.employeeId}__}">view</a></td>
+        <td><a th:href="@{/employee/{id}/edit(id=${row.getEmployeeId()})}" class="btn btn-info">Edit</a></td>
+
+        <td>
+            <!-- Button trigger modal -->
+            <button class="btn btn-danger" data-toggle="modal" th:href="@{/delete/__${row.employeeId}__}"
+                    th:data-parameter1="${row.employeeId}" th:data-parameter2="${row.employeeName}"
+                    onclick="deleteEmployee(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'));">
+                Delete
+            </button></td>
+
+        <td><a th:href="@{/employee/{id}/view(id=${row.employeeId})}" class="btn btn-info">view</a></td>
     </tr>
     </tbody>
 </table>
+<div>
+    <a th:href="@{'/employee'(page = ${employeeList.number - 1})}"
+       th:if="${employeeList.hasPrevious()}">Previous</a>
+    <span th:text="${employeeList.number + 1}"></span>
+    / <span th:text="${employeeList.totalPages}"></span>
+    <a th:href="@{'/employee'(page = ${employeeList.number + 1})}"
+       th:if="${employeeList.hasNext()}">Next</a>
+</div>
 <footer th:replace="/layout :: footer"></footer>
+
+
+
+
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">DELETE EMPLOYEE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>do you want to delete <span style="color: red" id="name-blog"></span>? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-primary" onclick="submitFormDelete()">YES</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form hidden id="form-delete" method="post" th:action="@{/employee/delete}">
+    <input type="text" name="id" id="id-blog">
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+
+    function deleteEmployee(id, name) {
+        document.getElementById("id-blog").value = id;
+        document.getElementById("name-blog").innerText = name;
+        $("#modelId").modal()
+    }
+
+    function submitFormDelete() {
+        document.getElementById("form-delete").submit();
+    }
+</script>
 </body>
 </html>

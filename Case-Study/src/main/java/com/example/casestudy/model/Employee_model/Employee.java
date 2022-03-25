@@ -22,17 +22,17 @@ public class Employee {
     private String employeeEmail;
     private String employeeAddress;
     @JsonManagedReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="position_id",referencedColumnName = "positionId")
     private Position position;
 
     @JsonManagedReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="education_degree_id",referencedColumnName = "educationDegreeId")
     private EducationDegree educationDegree;
 
     @JsonManagedReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="division_id",referencedColumnName = "divisionId")
     private Division division;
 

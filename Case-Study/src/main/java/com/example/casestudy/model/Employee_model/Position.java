@@ -12,7 +12,7 @@ public class Position {
     private String positionName;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "position")
+    @OneToMany(mappedBy = "position",cascade = CascadeType.ALL)
     private Set<Employee> employee;
 
     public Position() {

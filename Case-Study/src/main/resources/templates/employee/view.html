@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Show Employee</h3>
+<p>
+    <a th:href="@{/employee}">
+        Back to employee list
+    </a>
+</p>
+<div id="form">
+        <input type="hidden" th:field="*{employee.employeeId}" />
+        <div>
+            <label>Name</label>
+            <input type="text" readonly th:field="*{employee.employeeName}"/>
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input type="text" readonly th:field="*{employee.employeeBirthday}"/>
+        </div>
+        <div>
+            <label>Id Card</label>
+            <input type="number" readonly th:field="*{employee.employeeIdCard}"/>
+        </div>
+        <div>
+            <label>Salary</label>
+            <input type="number" readonly th:field="*{employee.employeeSalary}"/>
+        </div>
+        <div>
+            <label>Phone</label>
+            <input type="text" readonly th:field="*{employee.employeePhone}"/>
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" readonly th:field="*{employee.employeeEmail}"/>
+        </div>
+        <div>
+            <label>Address</label>
+            <input type="text" readonly th:field="*{employee.employeeAddress}"/>
+        </div>
+        <div>
+            <label>Positon Name</label>
+            <input type="text" readonly th:field="*{employee.position.positionName}"/>
+        </div>
+        <div>
+            <label>Education Degree</label>
+            <input type="text" readonly th:field="*{employee.educationDegree.educationDegreeName}"/>
+        </div>
+        <div>
+            <label>Division</label>
+            <input type="text" readonly th:field="*{employee.division.divisionName}"/>
+        </div>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

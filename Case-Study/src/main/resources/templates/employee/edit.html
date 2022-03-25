@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
 <body>
+<h3>Edit Employee</h3>
+<p>
+    <a th:href="@{/employee}">
+        Back to employee list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/update}" th:object="${employee}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{employeeId}"/>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{employeeName}"/>
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input type="date" th:field="*{employeeBirthday}"/>
+        </div>
+        <div>
+            <label>Id Card</label>
+            <input type="number" th:field="*{employeeIdCard}"/>
+        </div>
+        <div>
+            <label>Salary</label>
+            <input type="number" th:field="*{employeeSalary}"/>
+        </div>
+        <div>
+            <label>Phone</label>
+            <input type="text" th:field="*{employeePhone}"/>
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" th:field="*{employeeEmail}"/>
+        </div>
+        <div>
+            <label>Address</label>
+            <input type="text" th:field="*{employeeAddress}"/>
+        </div>
+        <div>
+            <label>Positon Name</label>
+            <select th:field="*{position}">
 
+                <option th:each="position : ${positionList}"
+                        th:value="${position.positionId}"
+                        th:utext="${position.positionName}"/>
+            </select>
+        </div>
+        <div>
+            <label>Education Degree</label>
+            <select th:field="*{educationDegree}">
+                <option value="*{employee.educationDegree.educationDegreeName}"> -- </option>
+                <option th:each="educationDegree : ${educationDegreeList}"
+                        th:value="${educationDegree.educationDegreeId}"
+                        th:utext="${educationDegree.educationDegreeName}"/>
+            </select>
+        </div>
+        <div>
+            <label>Division</label>
+            <select th:field="*{division}">
+                <option value="*{employee.division.divisionName}"> -- </option>
+                <option th:each="division : ${divisionList}"
+                        th:value="${division.divisionId}"
+                        th:utext="${division.divisionName}"/>
+            </select>
+        </div>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
 </body>
 </html>
