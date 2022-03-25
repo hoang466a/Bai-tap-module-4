@@ -43,7 +43,6 @@
         <div>
             <label>Positon Name</label>
             <select th:field="*{position}">
-
                 <option th:each="position : ${positionList}"
                         th:value="${position.positionId}"
                         th:utext="${position.positionName}"/>
@@ -52,7 +51,6 @@
         <div>
             <label>Education Degree</label>
             <select th:field="*{educationDegree}">
-                <option value="*{employee.educationDegree.educationDegreeName}"> -- </option>
                 <option th:each="educationDegree : ${educationDegreeList}"
                         th:value="${educationDegree.educationDegreeId}"
                         th:utext="${educationDegree.educationDegreeName}"/>
@@ -61,7 +59,6 @@
         <div>
             <label>Division</label>
             <select th:field="*{division}">
-                <option value="*{employee.division.divisionName}"> -- </option>
                 <option th:each="division : ${divisionList}"
                         th:value="${division.divisionId}"
                         th:utext="${division.divisionName}"/>

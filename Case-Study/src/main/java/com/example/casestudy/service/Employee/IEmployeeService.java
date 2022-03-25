@@ -10,4 +10,5 @@ public interface IEmployeeService {
     void save(Employee employee);
     Page<Employee> employeeSearchByName(String name, Pageable pageable);
     void deleteById(Integer id);
+    Page<Employee> findByEmployeeId(Integer id, Pageable pageable);
 }

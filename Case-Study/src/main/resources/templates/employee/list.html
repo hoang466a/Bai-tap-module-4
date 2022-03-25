@@ -91,6 +91,33 @@
     <input type="text" name="id" id="id-blog">
 </form>
 
+
+
+
+<!--<form th:action="@{/search}">
+    <label for="employeeName">Search By Name Or Id</label>
+    <input type="text" id="employeeName" name="keySearch" placeholder="Input employee name">
+    <select name="choice">
+            <option value="searchId">search id</option>
+            <option value="searchName"> search name</option>
+    </select>
+    <input type="submit" value="search" name="search">
+</form>-->
+
+
+<form th:action="@{/search}">
+    <label for="employeeName">Search By Name Or Id</label>
+    <input type="text" id="employeeName" name="keySearch" placeholder="Input employee name">
+    <select name="choice">
+            <option value="searchId">Search by id</option>
+            <option value="searchName">Search by name</option>
+    </select>
+    <input type="submit" value="search" name="search">
+</form>
+
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 

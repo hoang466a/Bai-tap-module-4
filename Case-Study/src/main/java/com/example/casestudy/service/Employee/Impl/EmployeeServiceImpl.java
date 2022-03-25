@@ -24,18 +24,25 @@ public class EmployeeServiceImpl implements IEmployeeService {
         return iEmployeeRepository.findById(id).orElse(null);
     }
 
+
+
     @Override
     public void save(Employee employee) {
         iEmployeeRepository.save(employee);
     }
 
     @Override
-    public Page<Employee> employeeSearchByName(String name, Pageable pageable) {
-        return null;
+    public Page<Employee> employeeSearchByName(String employeeName, Pageable pageable) {
+        return iEmployeeRepository.findByEmployeeNameContaining(employeeName,pageable);
     }
 
     @Override
     public void deleteById(Integer id) {
         iEmployeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Employee> findByEmployeeId(Integer id, Pageable pageable) {
+        return iEmployeeRepository.findByEmployeeId(id,pageable);
     }
 }

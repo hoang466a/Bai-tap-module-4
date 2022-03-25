@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -35,7 +36,6 @@ public class EmployeeController {
 
     @GetMapping("/employee")
     public ModelAndView employeeShow(@PageableDefault(value = 3, sort = "employeeId", direction = Sort.Direction.ASC) Pageable pageable) {
-
         ModelAndView modelAndView = new ModelAndView("employee/list");
         modelAndView.addObject("employeeList", iEmployeeService.findAll(pageable));
         modelAndView.addObject("divisionList", iDivisionService.findAll());
@@ -93,4 +93,17 @@ public class EmployeeController {
         iEmployeeService.save(employee);
         return "redirect:/employee";
     }
+
+   @GetMapping("/search")
+    public String employeeSearchByName(@PageableDefault(value = 3, sort = "employeeId", direction = Sort.Direction.ASC) Pageable pageable, @RequestParam(name="keySearch",required = false)String name,@RequestParam(name = "choice",required = false)String choice ,Model model) {
+       if (choice.equals("searchId")){
+           int id  = Integer.parseInt(name);
+           model.addAttribute("employeeList",iEmployeeService.findByEmployeeId(id,pageable));
+       }else if (choice.equals("searchName")){
+           model.addAttribute("employeeList",iEmployeeService.employeeSearchByName(name,pageable));
+       }
+       return "/employee/list";
+    }
+
+
 }
