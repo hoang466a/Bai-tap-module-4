@@ -1,20 +1,27 @@
 package com.example.casestudy.controller;
 
+import com.example.casestudy.DTO.EmployeeDTO;
 import com.example.casestudy.model.Employee_model.Employee;
 import com.example.casestudy.repository.Employee.IPositionRepository;
 import com.example.casestudy.service.Employee.IDivisionService;
 import com.example.casestudy.service.Employee.IEducationDegreeService;
 import com.example.casestudy.service.Employee.IEmployeeService;
 import com.example.casestudy.service.Employee.IPositionService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.transaction.Transaction;
+import javax.validation.Valid;
 
 @Controller
 
@@ -47,7 +54,7 @@ public class EmployeeController {
     @GetMapping("/employee/create")
     public ModelAndView employeeShowCreate() {
         ModelAndView modelAndView = new ModelAndView("employee/create");
-        modelAndView.addObject("employee", new Employee());
+        modelAndView.addObject("employee", new EmployeeDTO());
         modelAndView.addObject("divisionList", iDivisionService.findAll());
         modelAndView.addObject("educationDegreeList", iEducationDegreeService.findAll());
         modelAndView.addObject("positionList", iPositionService.findAll());
@@ -55,9 +62,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String addEmployee(@ModelAttribute Employee employee) {
-        iEmployeeService.save(employee);
-        return "redirect:/employee";
+    public String addEmployee( @Validated @ModelAttribute("employee") EmployeeDTO employeeDTO, BindingResult bindingResult,Model model) {
+   Employee employee =new Employee();
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("divisionList", iDivisionService.findAll());
+            model.addAttribute("educationDegreeList", iEducationDegreeService.findAll());
+            model.addAttribute("positionList", iPositionService.findAll());
+            return "employee/create";
+        }else {
+            BeanUtils.copyProperties(employeeDTO, employee);
+            iEmployeeService.save(employee);
+            return "redirect:/employee";
+        }
+
     }
 
     @PostMapping("/employee/delete")

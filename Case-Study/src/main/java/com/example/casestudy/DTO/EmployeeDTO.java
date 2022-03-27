@@ -1,54 +1,42 @@
-package com.example.casestudy.model.Employee_model;
+package com.example.casestudy.DTO;
 
-import com.example.casestudy.model.Contract;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.casestudy.model.Employee_model.Division;
+import com.example.casestudy.model.Employee_model.EducationDegree;
+import com.example.casestudy.model.Employee_model.Position;
+import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
-import java.util.Set;
-
-@Entity
-public class Employee {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+@Component
+public class EmployeeDTO implements Validator {
     private Integer employeeId;
+    @NotNull
+    @NotBlank
     private String employeeName;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private Date employeeBirthday;
+    @NotNull
+    @NotBlank(message = "không được để trống")
+    @Pattern(regexp="[0-9]{9}",message = "dài tối thiểu 9 số")
     private String employeeIdCard;
+    @NotNull
+    @Min(0)
     private Double employeeSalary;
+    @NotNull
+    @NotBlank
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="position_id",referencedColumnName = "positionId")
     private Position position;
-
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="education_degree_id",referencedColumnName = "educationDegreeId")
     private EducationDegree educationDegree;
-
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name="division_id",referencedColumnName = "divisionId")
     private Division division;
-
-   /* @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="username",referencedColumnName = "userName")
-    private User user;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "employee")
-    private Set<Contract> contract;*/
-
-    public Employee() {
-    }
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -126,8 +114,8 @@ public class Employee {
         return educationDegree;
     }
 
-    public void setEducationDegree(EducationDegree education_degree) {
-        this.educationDegree = education_degree;
+    public void setEducationDegree(EducationDegree educationDegree) {
+        this.educationDegree = educationDegree;
     }
 
     public Division getDivision() {
@@ -138,5 +126,13 @@ public class Employee {
         this.division = division;
     }
 
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
 
+    @Override
+    public void validate(Object target, Errors errors) {
+
+    }
 }

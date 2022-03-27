@@ -32,9 +32,9 @@
     <tbody>
     <tr th:each="row : ${employeeList}">
         <td th:text="${row.getEmployeeName()}"></td>
-        <td th:text="${row.getEmployeeBirthday()}"></td>
+        <td th:text="${#dates.format(row.getEmployeeBirthday(),'dd-MM-YYYY')}"></td>
         <td th:text="${row.getEmployeeIdCard()}"></td>
-        <td th:text="${row.getEmployeeSalary()}"></td>
+        <td th:text="${#numbers.formatDecimal(row.getEmployeeSalary(),0,1)}"></td>
         <td th:text="${row.getEmployeePhone()}"></td>
         <td th:text="${row.getEmployeeEmail()}"></td>
         <td th:text="${row.getEmployeeAddress()}"></td>
@@ -107,7 +107,7 @@
 
 <form th:action="@{/search}">
     <label for="employeeName">Search By Name Or Id</label>
-    <input type="text" id="employeeName" name="keySearch" placeholder="Input employee name">
+    <input type="text" id="employeeName" name="keySearch" placeholder="Input employee name or id">
     <select name="choice">
             <option value="searchId">Search by id</option>
             <option value="searchName">Search by name</option>

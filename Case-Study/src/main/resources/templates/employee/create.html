@@ -15,18 +15,22 @@
         <div>
             <label>Name</label>
             <input type="text" th:field="*{employeeName}"/>
+            <p th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}" style="color: red"></p>-->
         </div>
         <div>
             <label>Birthday</label>
             <input type="date" th:field="*{employeeBirthday}"/>
+            <p th:if="${#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}" style="color: red"></p>-->
         </div>
         <div>
             <label>Id Card</label>
             <input type="number" th:field="*{employeeIdCard}"/>
+            <p th:if="${#fields.hasErrors('employeeIdCard')}" th:errors="*{employeeIdCard}" style="color: red"></p>-->
         </div>
         <div>
             <label>Salary</label>
             <input type="number" th:field="*{employeeSalary}"/>
+            <p th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}" style="color: red"></p>-->
         </div>
         <div>
             <label>Phone</label>
@@ -39,6 +43,7 @@
         <div>
             <label>Address</label>
             <input type="text" th:field="*{employeeAddress}"/>
+
         </div>
         <div>
             <label>Positon Name</label>
@@ -48,6 +53,7 @@
                         th:value="${position.positionId}"
                         th:utext="${position.positionName}"/>
             </select>
+            <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}" style="color: red"></p>-->
         </div>
         <div>
             <label>Education Degree</label>
@@ -57,6 +63,7 @@
                         th:value="${educationDegree.educationDegreeId}"
                         th:utext="${educationDegree.educationDegreeName}"/>
             </select>
+            <p th:if="${#fields.hasErrors('educationDegree')}" th:errors="*{educationDegree}" style="color: red"></p>-->
         </div>
         <div>
             <label>Division</label>
@@ -66,6 +73,7 @@
                         th:value="${division.divisionId}"
                         th:utext="${division.divisionName}"/>
             </select>
+            <p th:if="${#fields.hasErrors('division')}" th:errors="*{division}" style="color: red"></p>-->
         </div>
         <input type="submit" value="Save"/>
     </form>
