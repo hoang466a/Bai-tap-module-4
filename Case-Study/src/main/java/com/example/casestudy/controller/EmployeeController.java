@@ -84,13 +84,20 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}/view")
-    public ModelAndView employeeShowView(@PathVariable int id) {
+    public ModelAndView employeeShowView(@PathVariable int id,RedirectAttributes redirectAttributes) {
         Employee employee=iEmployeeService.findById(id);
         ModelAndView modelAndView = new ModelAndView("employee/view");
-        modelAndView.addObject("employee", employee);
-        modelAndView.addObject("divisionList", iDivisionService.findAll());
-        modelAndView.addObject("educationDegreeList", iEducationDegreeService.findAll());
-        modelAndView.addObject("positionList", iPositionService.findAll());
+        if(employee!=null)
+        {
+            modelAndView.addObject("employee", employee);
+            modelAndView.addObject("divisionList", iDivisionService.findAll());
+            modelAndView.addObject("educationDegreeList", iEducationDegreeService.findAll());
+            modelAndView.addObject("positionList", iPositionService.findAll());
+        }
+        else
+        {
+            redirectAttributes.addFlashAttribute("message","khong ton tai nhan vien");
+        }
         return modelAndView;
     }
 
@@ -114,8 +121,13 @@ public class EmployeeController {
    @GetMapping("/search")
     public String employeeSearchByName(@PageableDefault(value = 3, sort = "employeeId", direction = Sort.Direction.ASC) Pageable pageable, @RequestParam(name="keySearch",required = false)String name,@RequestParam(name = "choice",required = false)String choice ,Model model) {
        if (choice.equals("searchId")){
-           int id  = Integer.parseInt(name);
-           model.addAttribute("employeeList",iEmployeeService.findByEmployeeId(id,pageable));
+           try{
+               int id  = Integer.parseInt(name);
+               model.addAttribute("employeeList",iEmployeeService.findByEmployeeId(id,pageable));
+           }
+           catch(NumberFormatException e){
+               return "error-404";
+           }
        }else if (choice.equals("searchName")){
            model.addAttribute("employeeList",iEmployeeService.employeeSearchByName(name,pageable));
        }

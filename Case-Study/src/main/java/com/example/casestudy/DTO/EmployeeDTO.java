@@ -20,6 +20,7 @@ public class EmployeeDTO implements Validator {
     @NotNull
     @NotBlank
     private String employeeName;
+    @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private Date employeeBirthday;
     @NotNull
